@@ -1,20 +1,22 @@
 #include "main.h"
 
 /**
- * print_alphabet_x10 - Prints the alphabet 10 times
- *
- * Return: void
+ * print_alphabet_x10 - prints the alphabet in lowercase 10 times
  */
 void print_alphabet_x10(void)
 {
-    int i, j;
+	int row = 0;
+	int ch;
 
-    for (i = 0; i < 10; i++)  // يكرر الطباعة 10 مرات
-    {
-        for (j = 'a'; j <= 'z'; j++)  // يطبع الحروف من a إلى z
-        {
-            _putchar(j);
-        }
-        _putchar('\n');  // يطبع سطر جديد بعد كل سطر
-    }
+	while (row < 10)
+	{
+		ch = 97; /* ASCII for 'a' */
+		while (ch <= 122) /* ASCII for 'z' */
+		{
+			_putchar(ch);
+			ch++;
+		}
+		_putchar('\n');
+		row++;
+	}
 }
