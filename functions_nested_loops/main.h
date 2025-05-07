@@ -1,9 +1,8 @@
-#include "main.h"
+/* main.h */
+#ifndef MAIN_H
+#define MAIN_H
 
-int _islower(int c)
-{
-    if (c >= 'a' && c <= 'z')
-        return (1);
-    else
-        return (0);
-}
+int _putchar(char c);
+int _islower(int c);
+
+#endif
