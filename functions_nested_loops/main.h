@@ -1,7 +1,9 @@
-#ifndef MAIN_H
-#define MAIN_H
+#include "main.h"
 
-int _putchar(char c);
-void print_alphabet(void);
-
-#endif
+int _islower(int c)
+{
+    if (c >= 'a' && c <= 'z')
+        return (1);
+    else
+        return (0);
+}
