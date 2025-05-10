@@ -1,13 +1,10 @@
-#include "main.h"
+#ifndef MAIN_H
+#define MAIN_H
 
-/**
- * print_numbers - prints the numbers from 0 to 9 followed by a new line
- */
-void print_numbers(void)
-{
-	int i;
+int _putchar(char c);
+int _isupper(int c);
+int _isdigit(int c);
+int mul(int a, int b);
+void print_numbers(void);
 
-	for (i = 0; i <= 9; i++)
-		_putchar(i + '0');
-	_putchar('\n');
-}
+#endif /* MAIN_H */
