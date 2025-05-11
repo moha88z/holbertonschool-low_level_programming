@@ -21,9 +21,9 @@ int _atoi(char *s)
         {
             started = 1;
 
+            /* overflow handling */
             if (result > (2147483647 - (s[i] - '0')) / 10)
             {
-                // overflow handling:
                 if (sign == 1)
                     return (2147483647);
                 else
