@@ -1,15 +1,17 @@
 #include "main.h"
 
 /**
- * _atoi - Converts a string to an integer.
- * @s: The string to convert.
+ * _atoi - Converts a string to an integer
+ * @s: The string to convert
  *
- * Return: The converted integer.
+ * Return: The integer value
  */
 int _atoi(char *s)
 {
-    int i = 0, sign = 1, result = 0;
-    int found_digit = 0;
+    int i = 0;
+    int sign = 1;
+    int result = 0;
+    int started = 0;
 
     while (s[i])
     {
@@ -17,10 +19,20 @@ int _atoi(char *s)
             sign *= -1;
         else if (s[i] >= '0' && s[i] <= '9')
         {
+            started = 1;
+
+            if (result > (2147483647 - (s[i] - '0')) / 10)
+            {
+                // overflow handling:
+                if (sign == 1)
+                    return (2147483647);
+                else
+                    return (-2147483648);
+            }
+
             result = result * 10 + (s[i] - '0');
-            found_digit = 1;
         }
-        else if (found_digit)
+        else if (started)
             break;
         i++;
     }
