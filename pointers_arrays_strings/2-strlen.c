@@ -2,20 +2,18 @@
 
 /**
  * _strlen - returns the length of a string
- * @s: the string
+ * @s: the string to be checked
  *
  * Return: the length of the string
  */
 int _strlen(char *s)
 {
-    int length = 0;
+	int len = 0;
 
-    /* Iterate through the string until we hit the null character */
-    while (*s != '\0')
-    {
-        length++;
-        s++;
-    }
-
-    return length;
+	while (*s != '\0')
+	{
+		len++;
+		s++;
+	}
+	return (len);
 }
