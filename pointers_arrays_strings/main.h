@@ -1,6 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-char *_strcat(char *dest, char *src);
+#include <stddef.h>  // for size_t
 
-#endif
+char *_strncat(char *dest, char *src, int n);
+int _putchar(char c);
+
+#endif /* MAIN_H */
