@@ -1,24 +1,29 @@
-int op_add(int a, int b)
-{
-	return (a + b);
-}
+#include "3-calc.h"
+#include <stdlib.h>
 
-int op_sub(int a, int b)
+/**
+ * get_op_func - selects the correct function
+ * @s: operator passed
+ *
+ * Return: pointer to function or NULL
+ */
+int (*get_op_func(char *s))(int, int)
 {
-	return (a - b);
-}
+	op_t ops[] = {
+		{"+", op_add},
+		{"-", op_sub},
+		{"*", op_mul},
+		{"/", op_div},
+		{"%", op_mod},
+		{NULL, NULL}
+	};
+	int i = 0;
 
-int op_mul(int a, int b)
-{
-	return (a * b);
-}
-
-int op_div(int a, int b)
-{
-	return (a / b);
-}
-
-int op_mod(int a, int b)
-{
-	return (a % b);
+	while (ops[i].op)
+	{
+		if (*(ops[i].op) == *s && s[1] == '\0')
+			return (ops[i].f);
+		i++;
+	}
+	return (NULL);
 }
