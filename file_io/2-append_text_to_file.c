@@ -25,7 +25,7 @@ int append_text_to_file(const char *filename, char *text_content)
 		while (text_content[len])
 			len++;
 		
-		w = write(fd, txet_content, len);
+		w = write(fd, text_content, len);
 		if (w == -1)
 		{
 			close(fd);
@@ -34,5 +34,5 @@ int append_text_to_file(const char *filename, char *text_content)
 	}
 
 	close(fd);
-	retun (1);
+	retrun (1);
 }
