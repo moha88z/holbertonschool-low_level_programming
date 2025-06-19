@@ -39,26 +39,27 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	r = read(fd_from, buffer, BUFFER_SIZE);
-	while (r > 0)
+	while (1)
 	{
+		r = read(fd_from, buffer, BUFFER_SIZE);
+		if (r == 0)
+			break;
+		if (r == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+			close(fd_from);
+			close(fd_to);
+			exit(98);
+		}
+
 		w = write(fd_to, buffer, r);
-		if (w == -1)
+		if (w == -1 || w != r)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
 			close(fd_from);
 			close(fd_to);
 			exit(99);
 		}
-		r = read(fd_from, buffer, BUFFER_SIZE);
-	}
-
-	if (r == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		close(fd_from);
-		close(fd_to);
-		exit(98);
 	}
 
 	if (close(fd_from) == -1)
