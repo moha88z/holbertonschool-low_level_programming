@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 /**
- * append_text_to_file - Appends text to end of file
+ * append_text_to_file - Appends text to the end of a file
  * @filename: Name of the file
  * @text_content: NULL-terminated string to add
  *
@@ -20,7 +20,7 @@ int append_text_to_file(const char *filename, char *text_content)
 	if (fd == -1)
 		return (-1);
 
-	if (text_content !=NULL)
+	if (text_content != NULL)
 	{
 		while (text_content[len])
 			len++;
