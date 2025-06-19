@@ -7,15 +7,15 @@
 #define BUFFER_SIZE 1024
 
 /**
- * main - Copies the content of one file to another
+ * main - Copies content from one file to another
  * @argc: Number of arguments
  * @argv: Argument vector
  *
- * Return: 0 on success, exits with specific codes on error
+ * Return: 0 on success, exit with code on failure
  */
 int main(int argc, char *argv[])
 {
-	int fd_from, fd_to, r, w, c1, c2;
+	int fd_from, fd_to, r, w;
 	char buffer[BUFFER_SIZE];
 
 	if (argc != 3)
@@ -39,9 +39,8 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	while (1)
+	while ((r = read(fd_from, buffer, BUFFER_SIZE)) != 0)
 	{
-		r = read(fd_from, buffer, BUFFER_SIZE);
 		if (r == -1)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
@@ -49,8 +48,6 @@ int main(int argc, char *argv[])
 			close(fd_to);
 			exit(98);
 		}
-		if (r == 0)
-			break;
 
 		w = write(fd_to, buffer, r);
 		if (w == -1 || w != r)
@@ -62,15 +59,13 @@ int main(int argc, char *argv[])
 		}
 	}
 
-	c1 = close(fd_from);
-	if (c1 == -1)
+	if (close(fd_from) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
 		exit(100);
 	}
 
-	c2 = close(fd_to);
-	if (c2 == -1)
+	if (close(fd_to) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
 		exit(100);
