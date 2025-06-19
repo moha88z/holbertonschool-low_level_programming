@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 		exit(99);
 	}
 
-	while ((r = read(fd_from, buffer, BUFFER_SIZE)) != 0)
+	while ((r = read(fd_from, buffer, BUFFER_SIZE)) > 0)
 	{
 		if (r == -1)
 		{
